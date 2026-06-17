@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/projetos.css">
+</head>
+<body>
+    <div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Studio<span>Design</span></div>
+    <div class="login-sub">Acesso Administrativo</div>
+ 
+    <label class="field-label" for="pwd-input">Senha</label>
+    <input class="field-input" id="pwd-input" type="password" placeholder="••••••••" autocomplete="current-password">
+ 
+    <button class="login-btn" onclick="doLogin()">Entrar</button>
+    <div class="login-error" id="login-error">Senha incorreta. Tente novamente.</div>
+    <p class="login-hint">Senha padrão: <strong>design123</strong> — troque no código.</p>
+  </div>
+</div>
+ 
+<!-- ═══════ ADMIN ═══════ -->
+<div id="admin-panel">
+ 
+  <header class="admin-header">
+    <div style="display:flex;align-items:center;">
+      <div class="admin-logo">Studio<span>Design</span></div>
+      <span class="admin-badge">Admin</span>
+    </div>
+    <div class="header-actions">
+      <a href="portfolio.html" target="_blank" class="btn btn-ghost">Ver Portfólio ↗</a>
+      <button class="btn btn-ghost" onclick="doLogout()">Sair</button>
+    </div>
+  </header>
+ 
+  <div class="admin-body">
+ 
+    <!-- SIDEBAR / FORMULÁRIO -->
+    <aside class="sidebar">
+      <div class="sidebar-title" id="form-title">Novo Projeto</div>
+ 
+      <div id="edit-indicator">
+        <span>Editando projeto</span>
+        <button onclick="cancelEdit()" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:.8rem;">✕ Cancelar</button>
+      </div>
+ 
+      <!-- Imagem -->
+      <div class="form-group">
+        <div class="form-label">Imagem de capa</div>
+        <div class="img-preview" id="img-preview" onclick="document.getElementById('img-file').click()">
+          <div class="img-preview-icon">🖼</div>
+          <span>Clique para adicionar imagem</span>
+        </div>
+        <input type="file" id="img-file" accept="image/*" style="display:none" onchange="handleImg(this)">
+        <button class="btn btn-ghost" style="width:100%;font-size:.72rem;justify-content:center;" onclick="clearImg()">Remover imagem</button>
+      </div>
+ 
+      <hr class="form-divider">
+ 
+      <!-- Campos -->
+      <div class="form-group">
+        <label class="form-label" for="f-title">Título *</label>
+        <input class="form-input" id="f-title" placeholder="Nome do projeto">
+      </div>
+ 
+      <div class="form-group">
+        <label class="form-label" for="f-category">Categoria</label>
+        <input class="form-input" id="f-category" placeholder="Ex: Branding, UI/UX, Ilustração…">
+      </div>
+ 
+      <div class="form-group">
+        <label class="form-label" for="f-year">Ano</label>
+        <input class="form-input" id="f-year" type="number" placeholder="2024" min="2000" max="2099">
+      </div>
+ 
+      <div class="form-group">
+        <label class="form-label" for="f-desc">Descrição</label>
+        <textarea class="form-textarea" id="f-desc" placeholder="Descreva o projeto, contexto, desafios…"></textarea>
+      </div>
+ 
+      <div class="form-group">
+        <label class="form-label">Ferramentas usadas</label>
+        <div class="tools-input-wrap">
+          <input class="form-input" id="f-tool-input" placeholder="Ex: Figma" style="flex:1"
+            onkeydown="if(event.key==='Enter'){addTool();event.preventDefault();}">
+          <button class="btn btn-primary" onclick="addTool()" style="flex-shrink:0;">+</button>
+        </div>
+        <div class="tools-list" id="tools-list"></div>
+      </div>
+ 
+      <div class="form-group">
+        <label class="form-label" for="f-link">Link do projeto (opcional)</label>
+        <input class="form-input" id="f-link" type="url" placeholder="https://…">
+      </div>
+ 
+      <hr class="form-divider">
+ 
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="saveProject()">✓ Salvar</button>
+        <button class="btn btn-ghost" onclick="resetForm()">Limpar</button>
+      </div>
+    </aside>
+ 
+    <!-- LISTA DE PROJETOS -->
+    <main class="content-area">
+      <div class="content-header">
+        <div>
+          <div class="content-title">Projetos</div>
+          <div class="project-count" id="proj-count"></div>
+        </div>
+        <button class="btn btn-danger" onclick="clearAll()" id="clear-all-btn" style="display:none">
+          ✕ Apagar todos
+        </button>
+      </div>
+ 
+      <div class="project-list" id="project-list"></div>
+    </main>
+ 
+  </div>
+</div>
+ 
+<div class="toast" id="toast"></div>
+
+<script src="../JS/projetos.js"></script>
+</body>
+</html>
