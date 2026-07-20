@@ -21,4 +21,5 @@ window.addEventListener("scroll", () => {
   } else {
     nav.classList.remove("ativa");
   }
-})
+});
+
