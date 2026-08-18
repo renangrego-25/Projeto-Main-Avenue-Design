@@ -1,4 +1,4 @@
-# [Site Main Avneue Design] — Relatório de Desenvolvimento
+# Site Main Avneue Design — Relatório de Desenvolvimento
 
 > Cliente: Site para Agência Main Avenue Design 
 > Desenvolvido por: Renan Gregorio da Silva
